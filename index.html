@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ice Cream Landing</title>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/remixicon.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="#">
+                <img src="assets/image/logo.svg" alt="Logo">
+            </a>
+
+            <nav class="nav">
+                <div class="nav-menu-btn" id="menu-btn">
+                    <span><i class="ri-menu-line"></i></span>
+                </div>
+                <ul id="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav>
+            
+
+            <div id="headerSearchWrap" class="header-search-wrap">
+                <button id="searchToggle" aria-label="Search" class="icon-btn"><i class="fa fa-search"></i></button>
+                <div id="headerSearch" class="header-search" aria-hidden="true">
+                    <input id="headerSearchInput" placeholder="Search products..." aria-label="Search products">
+                    <button id="headerSearchClear" class="closebtn" aria-label="Clear search">×</button>
+                </div>
+            </div>
+
+            <div class="metamask-wrap">
+                <button class="nav-metamask" id="metamask">
+                    <img class="img-metamask" src="assets/image/metamask.svg" alt="No Image">
+                    <span>Connect</span>
+                </button>
+
+                <div id="contentMetamask" class="content-metamask">
+                    <button id="balanceMetamask" data-action="view-balance">View Balance </button>
+                    <button id="addressMetamask" data-action="view-address">View Address</button>
+                    <button id="historyMetamask" data-action="view-history">View History</button>
+                    <button id="productsMetamask" data-action="buy-products">Buy Products</button>
+
+                    <hr>
+                    <button id="sendMetamask" data-action="send">Send</button>
+                    <button id="swapMetamask" data-action="swap">Swap</button>
+
+                    <hr>
+                    <button id="networkMetamask" data-action="network">Network</button>
+                    <button id="disconnectMetamask" data-action="disconnect">Disconnect</button>
+                </div>
+            </div>
+
+            
+        </div>
+    </header>
+
+    <!----Section Action Landing Page --->
+    <section id="landingContent" class="landing-content">
+        
+        <!------- Wallet Balance Card-------->
+        <div class="landing-balance" id="balanceCard">
+            <h4>Wallet Balance</h4>
+            <p>ETH: <span id="ethBalance">-</span></p>
+            <div class="balance-actions">
+                <button class="refreshbtn" id="refreshBalance">Refresh</button>
+                <button class="closebtn" id="closeBalance">Close</button>
+            </div>
+        </div>
+
+        <!------- Wallet Address Card ---->
+        <div class="landing-balance" id="walletCard">
+            <h4>Wallet Address</h4>
+            <p id="walletAddress">-</p>
+           <div class="balance-actions">
+                <button class="copybtn" id="copyWallet">Copy</button>
+                <button class="closebtn" id="closeWallet">Close</button>
+            </div>
+        </div>
+
+        <!---- Transaction History Card --->
+        <div class="landing-balance" id="historyCard">
+            <h4>Transaction History</h4>
+            <ul id="transactionList">
+            </ul>
+            <div class="history-api">
+                <div class="history-input">
+                    <input id="etherscanKeyInput" placeholder="Etherscan API key (optional)">
+                </div>
+                <div class="history-controls">
+                    <button id="saveEtherscanKey" class="refreshbtn">Save</button>
+                    <button class="refreshbtn" id="loadHistory">Load</button>
+                    <button id="clearEtherscanKey" class="closebtn" style="display:none">Clear</button>
+                </div>
+                <p id="historyHint" class="history-desc">*No API key configured. You can click "Open on Etherscan" to view the address on Etherscan.</p>
+            </div>
+            <div class="balance-actions">
+                <button class="openetherscanbtn" id="openEtherscan">Open on Etherscan</button>
+                <button class="closebtn" id="closeHistory">Close</button>
+            </div>
+        </div>
+
+        <!------- Buy Products ------>
+        <div class="landing-balance" id="buyProducts">
+            <h4>Buy Products</h4>
+            <p id="historyHint" class="history-desc">*No Contract Address configured. You can click Open on OpenSea or Open on MetaMask.</p>
+
+            <div class="balance-actions">
+                <button class="refreshbtn" id="openOpenseaBuy">Open on OpenSea</button>
+                <button class="refreshbtn" id="openMetamaskBuy">Open on MetaMask</button>
+                <button class="closebtn" id="closeBuyStatic">Close</button>
+                <button class="closebtn" id="manageProductsToggle" style="display:inline-block">Manage</button>
+            </div>
+
+            <!-- Manage products (hidden by default) -->
+            <div  class="manage-products" id="manageProducts">
+                <div class="manage-item">
+                    <input class="input-products" id="productNameInput" placeholder="Product name">
+                    <input class="input-price" id="productPriceInput" placeholder="Price (ETH)" type="number" step="0.01">
+                    <button id="addProductBtn" class="refreshbtn">Add</button>
+                    <button id="clearProductsBtn" class="closebtn">Clear All</button>
+                </div>
+                <div class="manage-status">
+                    <label>Load from contract (advanced, requires ethers.js)</label>
+                    <div class="manage-input">
+                        <textarea id="abiInput" placeholder="Paste ABI JSON here"></textarea>
+                    </div>
+                    <div class="manage-btn">
+                        <button id="loadFromContractBtn" class="refreshbtn">Load</button>
+                        <div class="manage-load" id="loadContractStatus"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!------- Network Card ------>
+        <div class="landing-balance" id="networkCard">
+            <h4>Network</h4>
+            <p id="currentNetwork">Current network: -</p>
+            <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+                <select id="networkSelect" style="flex:1;padding:6px;border:1px solid #ddd;border-radius:4px"></select>
+                <button id="switchNetworkBtn" class="refreshbtn">Switch</button>
+            </div>
+            <p id="networkHint" class="history-desc" style="margin-top:8px">If the selected network doesn't match your wallet, use the Switch button to request the wallet to switch networks.</p>
+            <div class="balance-actions">
+                <button class="closebtn" id="closeNetwork">Close</button>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero">
+        <button class="hero-badge concave-badge" id="hero-badge" aria-expanded="false" aria-controls="hero-badges">
+            <span class="badge-label">NEW PRODUCTS</span>
+        </button>
+
+        <div id="hero-badges" class="hero-badges" aria-hidden="true">
+            <button class="item-badge concave-badge" data-filter="Minty Fresh">Minty Fresh</button>
+            <button class="item-badge concave-badge" data-filter="Caramel swirl">Caramel Swirl</button>
+            <button class="item-badge concave-badge" data-filter="Dark Chocolate">Chocolate Delight</button>
+        </div>
+
+        <div class="hero-slider" aria-hidden="true">
+            <div class="slide slide-1" style="background-image:url('assets/image/hero4.jpg')"></div>
+            <div class="slide slide-2" style="background-image:url('assets/image/hero5.jpg')"></div>
+            <div class="slide slide-3" style="background-image:url('assets/image/hero6.jpg')"></div>
+        </div>
+
+        <div class="hero-overlay" aria-hidden="true"></div>
+
+        <div class="hero-content">
+            <div class="hero-inner">
+                <div class="hero-text">
+                    <h1>Fresh And Creamy Ice Cream</h1>
+                    <p>Made with real ingredients and unforgettable flavors</p>
+                    <a class="btn cta" href="#products">Order Now</a>
+                </div>
+
+                <div class="hero-media" aria-hidden="false">
+                    <img class="fan-card pos-left" src="assets/image/hero4.jpg" alt="Hero ice cream 1">
+                    <img class="fan-card pos-center" src="assets/image/hero5.jpg" alt="Hero ice cream 2">
+                    <img class="fan-card pos-right" src="assets/image/hero6.jpg" alt="Hero ice cream 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- social icons on right -->
+        <div class="hero-social" aria-hidden="true">
+            <a href="#" aria-label="Instagram" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+    </section>
+
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="features-grid">
+                <article class="feature">
+                    <img src="assets/image/icon1.jpg" alt="Delivery">
+                    <h3>Fast Delivery</h3>
+                    <p>Order online and get cold packed delivery straight to your door.</p>
+                </article>
+                <article class="feature">
+                    <img src="assets/image/icon2.jpg" alt="Secure Payment">
+                    <h3>Secure Payment</h3>
+                    <p>Payments are handled securely via trusted platforms.</p>
+                </article>
+                <article class="feature">
+                    <img src="assets/image/icon3.jpg" alt="Handmade">
+                    <h3>Handmade</h3>
+                    <p>Each batch is carefully churned to perfect texture.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">Our Favorites</h2>
+            <div class="products-grid">
+                <div class="card" data-img="assets/image/product6.png" data-category="Dark Chocolate">
+                    <span class="product-badge">NEW</span>
+                    <img src="assets/image/product6.png" alt="Product 4">
+                    <h4>Dark Chocolate</h4>
+                    <p class="products-desc">Rich chocolate with a silky, creamy texture a chocolate lover's favorite.</p>
+                    <p class="price">$6.50</p>
+                    <button class="btn outline buy-btn">Buy</button>
+                    <button class="btn outline view-btn">View</button>
+                </div>
+
+
+                <div class="card" data-img="assets/image/product7.png" data-category="Pistachio Delight">
+                    <span class="product-badge">NEW</span>
+                    <img src="assets/image/product7.png" alt="Product 6">
+                    <h4>Pistachio Delight</h4>
+                    <p class="products-desc">Authentic pistachio flavor with crunchy nut pieces in every bite.</p>
+                    <p class="price">$7.00</p>
+                    <button class="btn outline buy-btn">Buy</button>
+                    <button class="btn outline view-btn">View</button>
+                </div>
+               
+                <div class="card" data-img="assets/image/product3.png" data-category="Minty Fresh">
+                    <span class="product-badge">NEW</span>
+                    <img src="assets/image/product3.png" alt="Product 3">
+                    <h4>Minty Fresh</h4>
+                    <p class="products-desc">Refreshing mint flavor, light and perfect for cleansing the palate.</p>
+                    <p class="price">$6.50</p>
+                    <button class="btn outline buy-btn">Buy</button>
+                    <button class="btn outline view-btn">View</button>
+                </div>
+
+                <div class="card" data-img="assets/image/product1.png" data-category="Strawberry Bliss">
+                    <img src="assets/image/product1.png" alt="Product 1">
+                    <h4>Strawberry Bliss</h4>
+                    <p class="products-desc">Ripe strawberries and natural sweetness, smooth and fragrant.</p>
+                    <p class="price">$6.50</p>
+                    <button class="btn outline buy-btn">Buy</button>
+                    <button class="btn outline view-btn">View</button>
+                </div>
+                
+                <div class="card" data-img="assets/image/product5.png" data-category="Blueberry Fruit">
+                    <img src="assets/image/product5.png" alt="Product 5">
+                    <h4>Blueberry Fruit</h4>
+                    <p class="products-desc">Fresh blueberries blended with creamy cheesecake in every scoop.</p>
+                    <p class="price">$7.00</p>
+                    <button class="btn outline buy-btn">Buy</button>
+                    <button class="btn outline view-btn">View</button>
+                </div>
+                <div class="card" data-img="assets/image/product4.jpg" data-category="Caramel swirl">
+                    <img src="assets/image/product4.png" alt="Product 6">
+                    <h4>Caramel swirl</h4>
+                    <p class="products-desc">Buttery caramel ribbons swirled through a creamy indulgent.</p>
+                    <p class="price">$6.50</p>
+                    <button class="btn outline buy-btn">Buy</button>
+                    <button class="btn outline view-btn">View</button>
+                </div>
+                
+                <div class="card" data-img="assets/image/product2.png" data-category="Dream Light">
+                    <img src="assets/image/product2.png" alt="Product 2">
+                    <h4>Dream Light</h4>
+                    <p class="products-desc">Smooth milk chocolate with layers of creamy richness.</p>
+                    <p class="price">$6.50</p>
+                    <button class="btn outline buy-btn">Buy</button>
+                    <button class="btn outline view-btn">View</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about">
+        <div class="about-inner">
+            <div class="about-text">
+                <h2 class="section-title">Small Batch, Big Heart</h2>
+                <p>We started as a neighborhood shop and grew because people loved our flavors. Every recipe is tested to deliver the perfect balance of creaminess and flavor.</p>
+                <a class="btn primary" href="#products">View Menu</a>
+            </div>
+            <div class="about-image">
+                <img src="assets/image/content.jpg" alt="About image">
+                <img src="assets/image/content1.jpg" alt="About image">
+                <img src="assets/image/content3.jpg" alt="About image">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CONTACT SECTION-->
+    <section id="contact" class="contact">
+        <div class="container contact-inner">
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                <p>Have a question or want to order? Send us a message and we'll get back to you shortly.</p>
+                <p class="contact-details"><strong>Phone:</strong> (123) 456-7890<br><strong>Email:</strong> hello@icecream.example</p>
+                <div class="contact-social" aria-label="Social links">
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <form class="contact-form" action="#" method="post" novalidate>
+                <input type="text" name="name" placeholder="Your name" required>
+                <input type="email" name="email" placeholder="Your email" required>
+                <textarea name="message" placeholder="Message" rows="5" required></textarea>
+                <button class="btn primary" type="submit">Send Message</button>
+            </form>
+            <div class="contact-maps">
+                <div class="map-card" data-map-link="https://www.google.com/maps" aria-label="Open map 1">
+                    <img src="assets/image/map1.jpg" alt="Map 1">
+                    <div class="map-overlay" aria-hidden="true">
+                        <button class="map-view" title="Lihat gambar besar"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <a class="map-link" href="https://www.google.com/maps" target="_blank" rel="noopener" title="Buka lokasi di Google Maps"><i class="fa-solid fa-location-dot"></i></a>
+                    </div>
+                </div>
+
+                <div class="map-card" data-map-link="https://www.google.com/maps" aria-label="Open map 2">
+                    <img src="assets/image/map2.jpg" alt="Map 2">
+                    <div class="map-overlay" aria-hidden="true">
+                        <button class="map-view" title="Lihat gambar besar"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <a class="map-link" href="https://www.google.com/maps" target="_blank" rel="noopener" title="Buka lokasi di Google Maps"><i class="fa-solid fa-location-dot"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>&copy; 2026 Gees Ice Cream. — Made By Gagas.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox modal for product preview -->
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+        <div class="lightbox-content">
+            <button id="lightbox-close" class="lightbox-close">×</button>
+            <img id="lightbox-img" src="" alt="Preview">
+            <div id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js" defer></script>
+</body>
+</html>
