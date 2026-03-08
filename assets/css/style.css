@@ -546,10 +546,7 @@ textarea {
     display:flex; 
     align-items:center; 
     gap:6px; 
-    margin-right: 30px; 
-}
-
-.header-search-wrap{ 
+    margin-right:30px; 
     position: absolute; 
     right: 100px; 
     top: 56%; 
@@ -563,10 +560,6 @@ textarea {
     align-items:center; 
     gap:8px; 
     margin-left: auto; 
-}
-
-.header-controls .header-search-wrap{ 
-    margin-right:6px; 
 }
 
 .icon-btn{  
@@ -2899,8 +2892,8 @@ textarea {
         max-width: 192px;
         height: 192px;
         margin: 0;
-        left: -98px;
-        transform: translate(60%, -5%);
+        left: -40px;
+        transform: translate(40%, -5%);
     }
 
     #menu-btn {
@@ -2949,16 +2942,27 @@ textarea {
     .header-search-wrap {
         display: flex !important;
         gap: 6px;
-        font-size: 10px;
-        max-width: 180px;
+        max-width: 100px;
         position: absolute !important;
         z-index: 200;
         pointer-events: auto;
-        left: 35% !important;
+        left: 28% !important;
         transform: translateX(-50%) !important;
-        top: 400px !important;
+        top: 317px !important;
         margin-left: 0 !important;
         
+    }
+
+    .icon-btn {
+        width: 30%;
+        font-size: 12px;
+    }
+
+    .header-search input#headerSearchInput {
+        font-size: 8px;
+        padding: 6px 6px;
+        max-width: 80px;
+        min-width: 80px;
     }
 
     .metamask-wrap {
@@ -3061,6 +3065,10 @@ textarea {
 
 
     /* ----- HERO SECTION ----- */
+    .hero {
+        height: 100vh;
+    }
+
     .hero-inner {
         padding: calc(var(--header-height) + 10px) 12px 20px;
         gap: 10px;
@@ -3070,11 +3078,11 @@ textarea {
     }
 
     .hero-text h1 {
-        font-size: 1.6rem;
-        transform: translateY(-90%);
-        margin-bottom: 0;
+        font-size: 1.9rem;
+        transform: translateY(-55%);
         text-align: center;
         order: 1;
+        padding: 2rem 2rem;
     }
 
     .hero-text p {
@@ -3082,41 +3090,41 @@ textarea {
         padding: 2px 6px;
         max-width: 96%;
         order: 3;
-        transform: translateY(150%);
+        transform: translateY(70%);
     }
 
     .hero-text .btn.cta {
-        padding: 9px 12px;
-        font-size: 0.85rem;
+        padding: 6px 9px;
+        font-size: 0.8rem;
         order: 4;
-        transform: translate(10%, 200%);
+        transform: translate(15%, 70%);
     }
 
     .hero-text .btn.cta:hover {
-        transform: translateY(calc(200% - 1px)) scale(.995);
+        transform: translateY(calc(80% - 4px)) scale(.945);
         box-shadow: 0 10px 24px rgba(255,79,139,0.18);
     }
 
     .hero-media {
-        width: 45%;
-        max-width: 240px;
-        margin-top: -6px;
+        width: 30%;
+        max-width: 200px;
+        margin-top: -125px;
         order: 2;
-        margin-right: 123px;
+        margin-right: 105px;
     }
 
     .hero-media .fan-card,
     .hero-media img.fan-card {
-        width: 140px !important;
-        max-width: 140px !important;
-        left: 70% !important;
-        top: 35% !important;
+        width: 90px !important;
+        max-width: 90px !important;
+        left: 65% !important;
+        top: 15% !important;
     }
 
     .hero-badge { 
-        width: 90px;
+        width: 40px;
         height: 30px;
-        font-size: 0.55rem;
+        font-size: 0.4rem;
         padding: 2px 2px; 
         transform: translateY(-40%) skewX(-12deg); 
     }
@@ -3470,18 +3478,19 @@ textarea {
         width: 100%;
         max-width: 100%;
         text-align: center;
-        margin: 0 auto;
+        margin-left: -25px;
         display: flex;
-        justify-content: center;
         gap: 10px;
         flex-wrap: nowrap;
-        align-items: center;
+        transform: none;
+        margin-top: 8px;
     }
 
     .map-card {
         display: block;
-        width: 48%;
-        max-width: 180px;
+        width: 80%;
+        max-width: 120px;
+        min-width: 120px;
         margin: 0 auto;
         position: relative;
     }
@@ -3519,9 +3528,9 @@ textarea {
     }
 
     .footer-inner p {
-        font-size: 12px;
-        padding: 0;
-        margin: 0;
+        font-size: 11px;
+        padding: 4px 6px;
+        text-align: center;
     }
 
     /* ------ LIGHTBOX MODAL ------ */
