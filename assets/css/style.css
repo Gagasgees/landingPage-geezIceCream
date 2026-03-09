@@ -2892,8 +2892,8 @@ textarea {
         max-width: 192px;
         height: 192px;
         margin: 0;
-        left: -40px;
-        transform: translate(40%, -5%);
+        left: -20px;
+        transform: translate(50%, -5%);
     }
 
     #menu-btn {
@@ -2946,23 +2946,23 @@ textarea {
         position: absolute !important;
         z-index: 200;
         pointer-events: auto;
-        left: 28% !important;
+        left: 25% !important;
         transform: translateX(-50%) !important;
-        top: 317px !important;
+        top: 440px !important;
         margin-left: 0 !important;
         
     }
 
     .icon-btn {
-        width: 30%;
+        width: 50px;
         font-size: 12px;
     }
 
     .header-search input#headerSearchInput {
-        font-size: 8px;
+        font-size: 10px;
         padding: 6px 6px;
-        max-width: 80px;
-        min-width: 80px;
+        max-width: 100px;
+        min-width: 100px;
     }
 
     .metamask-wrap {
@@ -3078,47 +3078,48 @@ textarea {
     }
 
     .hero-text h1 {
-        font-size: 1.9rem;
-        transform: translateY(-55%);
+        font-size: 2rem;
+        transform: translateY(-52%);
         text-align: center;
         order: 1;
         padding: 2rem 2rem;
+        line-height: 1.2;
     }
 
     .hero-text p {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         padding: 2px 6px;
         max-width: 96%;
         order: 3;
-        transform: translateY(70%);
+        text-align: center;
+        margin-top: 12rem;
     }
 
     .hero-text .btn.cta {
-        padding: 6px 9px;
+        padding: 8px 11px;
         font-size: 0.8rem;
         order: 4;
-        transform: translate(15%, 70%);
+        transform: translate(15%, -35%);
     }
 
     .hero-text .btn.cta:hover {
-        transform: translateY(calc(80% - 4px)) scale(.945);
         box-shadow: 0 10px 24px rgba(255,79,139,0.18);
     }
 
     .hero-media {
-        width: 30%;
+        width: 45%;
         max-width: 200px;
-        margin-top: -125px;
+        margin-top: -115px;
         order: 2;
         margin-right: 105px;
     }
 
     .hero-media .fan-card,
     .hero-media img.fan-card {
-        width: 90px !important;
-        max-width: 90px !important;
+        width: 150px !important;
+        max-width: 150px !important;
         left: 65% !important;
-        top: 15% !important;
+        top: 5% !important;
     }
 
     .hero-badge { 
