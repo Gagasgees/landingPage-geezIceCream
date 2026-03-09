@@ -2948,7 +2948,7 @@ textarea {
         pointer-events: auto;
         left: 25% !important;
         transform: translateX(-50%) !important;
-        top: 440px !important;
+        top: 455px !important;
         margin-left: 0 !important;
         
     }
@@ -3099,7 +3099,7 @@ textarea {
         padding: 8px 11px;
         font-size: 0.8rem;
         order: 4;
-        transform: translate(15%, -35%);
+        transform: translate(15%, 20%);
     }
 
     .hero-text .btn.cta:hover {
